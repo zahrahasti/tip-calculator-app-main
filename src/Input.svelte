@@ -18,7 +18,7 @@
               <slot name="label"/>
          </label>
          <input 
-          type="text" 
+          type="number" 
           on:input={handleInput} 
           on:blur={handleInput}
           class:textPlaceholder
