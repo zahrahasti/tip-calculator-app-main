@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  export let content,customInput=false;
+  export let content
  export let textPlaceholder;
    const dispatch=createEventDispatcher();
    function handleInput(){
@@ -11,7 +11,7 @@
    }
 </script>
 
-<div class="container"  class:custom-input={customInput} data-target="{textPlaceholder}">
+<div class="container" class:textPlaceholder={textPlaceholder} data-target="{textPlaceholder}">
     <slot name="title"/>
     <div class="container-input">
          <label>
@@ -42,14 +42,15 @@
         align-items: center;
         justify-content:space-between;
         border-radius:4px;
-        gap:.5rem;   
-        height:100%;
+        gap:.5rem;
+        height:3rem;   
    }
  
    .container-input input{
     border-radius:4px;
     position:absolute;
-    font-weight:700;
+    font-weight:500;
+    font-size:1.2rem;
     text-align:right;
     background:transparent;
     border:1.5px solid hsl(189, 41%, 97%);
@@ -61,13 +62,13 @@
     color:var(--dark-green);
     font-weight: 700;
   }
+
   input.textPlaceholder{
-    text-align:center;
-    padding:0 .5rem;
+    text-align: center;
+    height: 100%;
   }
   input.textPlaceholder::placeholder{
-    color:var(--dark-green);
-
+    color:hsl(186, 14%, 43%);
   }
   input:focus{
     border:1.5px solid var(--light-green);

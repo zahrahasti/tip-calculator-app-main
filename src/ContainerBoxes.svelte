@@ -1,17 +1,21 @@
  <script lang="ts">
   import { createEventDispatcher } from "svelte";
    import Box from "./Box.svelte";
-  let clicked=false;
+   let clicked=false
+   export let activeBtn;
   const contents=[5,10,15,25,50]
   const dispatch=createEventDispatcher()
   function handleClick(e:Event){
     e.preventDefault();
-    const boxes=[...document.querySelectorAll("[data-content]")] as HTMLElement[];
-    boxes.forEach(box=>{
-      box.style.backgroundColor="hsl(183, 100%, 15%)"
-    })
-    const btn= e.currentTarget as HTMLButtonElement;
-    btn.style.backgroundColor="hsl(172, 67%, 45%)";
+   const btns=document.querySelectorAll(".container-box button");
+
+     btns.forEach(btn=>{
+      btn.addEventListener("click",function(){
+        btns.forEach(btn=>btn.classList.remove("clicked"))
+        this.classList.add("clicked")
+        this.addEventListener("click",()=>this.classList.toggle("clicked"));
+      })
+     })
     const content:number=+this.dataset.content;
      dispatch("handleVal",{
       content
@@ -24,11 +28,16 @@
     <h3>Select Tip %</h3>
     <div class="container-box">
      {#each contents as content}
-     <Box {content} {clicked} on:click={handleClick}>
+     <Box --bg-color="hsl(183, 100%, 15%)"
+          --text-color="#fff"
+          {content}
+          {clicked}
+          on:click={handleClick}
+           >
         <p slot="content">{content}%</p>
      </Box>
      {/each}
-     <slot name="input" />
+     <slot name="input" {activeBtn} />
     </div>
     
 </div>
