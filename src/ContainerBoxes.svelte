@@ -12,8 +12,6 @@
     })
     const btn= e.currentTarget as HTMLButtonElement;
     btn.style.backgroundColor="hsl(172, 67%, 45%)";
-    // //fix this in ts                              
-   //How to rempve all this color
     const content:number=+this.dataset.content;
      dispatch("handleVal",{
       content
